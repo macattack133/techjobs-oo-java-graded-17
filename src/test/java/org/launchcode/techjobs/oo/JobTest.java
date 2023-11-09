@@ -1,6 +1,5 @@
 package org.launchcode.techjobs.oo;
 
-import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,5 +35,26 @@ public class JobTest {
         Job test_one = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         Job test_two = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertNotEquals(test_one, test_two);
+    }
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String s = System.lineSeparator();
+        assertEquals(s + "ID: " + testJob.getId() + s +"Name: Product tester" + s + "Employer: ACME" + s + "Location: Desert" + s + "Position Type: Quality control" + s + "Core Competency: Persistence" + s,
+                testJob.toString());
+    }
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String s = System.lineSeparator();
+        assertEquals(s + "ID: " + testJob.getId() +s+ "Name: Product tester" + s + "Employer: ACME" + s + "Location: Desert" + s + "Position Type: Quality control" + s + "Core Competency: Persistence" + s,
+        testJob.toString());
+    }
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job testJob = new Job("Product tester", new Employer("ACME"), new Location(""), new PositionType(""), new CoreCompetency(""));
+        String s = System.lineSeparator();
+        assertEquals(s + "ID: " + testJob.getId() + s + "Name: " + testJob.getName() + s + "Employer: " + testJob.getEmployer() + s + "Location: Data not available" + s + "Position Type: Data not available" + s + "Core Competency: Data not available" + s,
+                testJob.toString());
     }
 }
